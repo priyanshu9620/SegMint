@@ -9,7 +9,7 @@ const port = process.env.PORT || 4000;
 // Middleware
 app.use(express.json());
 // this peice of code is used for single deployment thing 
-app.use(express.static(path.join(__dirname, 'frontend/public'))); // Serve static files from the frontend
+app.use(express.static(path.join(__dirname, '../frontend/public'))); // Serve static files from the frontend
 app.use(cors()); // Enable CORS for all origins
 app.use(bodyParser.json());
 
@@ -20,7 +20,7 @@ app.get('/predict', (req, res) => {
 
 // this peice of code is used for single deployment thing
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'frontend/public/index.html')); // Serve the main HTML file
+    res.sendFile(path.join(__dirname, '../frontend/public/index.html')); // Serve the main HTML file
 });
 
 app.post('/predict', (req, res) => {
