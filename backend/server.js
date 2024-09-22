@@ -10,7 +10,10 @@ const port = process.env.PORT || 4000;
 app.use(express.json());
 // this peice of code is used for single deployment thing 
 app.use(express.static(path.join(__dirname, '../frontend/public'))); // Serve static files from the frontend
-app.use(cors()); // Enable CORS for all origins
+// instead of specifying single url i just allowed to all origins 
+app.use(cors({
+    origin:'*'
+})); 
 app.use(bodyParser.json());
 
 // Routes

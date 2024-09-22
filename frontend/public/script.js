@@ -4,7 +4,7 @@ document.getElementById('predictionForm').addEventListener('submit', function (e
     const features = document.getElementById('features').value.split(',').map(Number);
     console.log(features);
     
-    fetch('http://localhost:4000/predict', {
+    fetch('https://segmint.onrender.com/predict', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
