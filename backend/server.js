@@ -34,6 +34,7 @@ app.post('/predict', (req, res) => {
     }
 
     const args = features.map(f => f.toString());
+    console.log('Received features:', args);
     const pythonPath = 'python'; // Use 'python' to ensure it works in deployment
     const scriptPath = path.join(__dirname, 'predict.py'); // Dynamic path
 
