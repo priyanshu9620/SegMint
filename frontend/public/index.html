@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Segmentation Prediction</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+</head>
+<body>
+    <div class="container">
+        <h1>Customer Segmentation Prediction</h1>
+        <form id="predictionForm">
+            <div class="input-group">
+                <label for="features">Enter Features</label>
+                <input type="text" id="features" placeholder="e.g., 5.1, 3.5, 1.4, 0.2" required>
+            </div>
+            <button type="submit">Predict</button>
+        </form>
+        <p id="predictionResult"></p>
+    </div>
+    <div class="container1">
+        <h2>Cluster Characteristics</h2>
+        <div class="graph-section">
+            <div class="graph-container">
+                <img src="images/graph1.png" alt="Cluster 1 Graph">
+                <p>Purchases vs Balance</p>
+            </div>
+            <div class="graph-container">
+                <img src="images/graph2.png" alt="Cluster 2 Graph">
+                <p>Payments vs Balance</p>
+            </div>
+            <div class="graph-container">
+                <img src="images/graph3.png" alt="Cluster 3 Graph">
+                <p>Purchases vs credit limit</p>
+            </div>
+        </div>
+        <div class="cluster-details">
+            <p><strong>Cluster 0 :</strong> This group of customers has the <b>lowest Purchases and Payments.</b> Although they have <b>sufficient funds</b>, they tend to save rather than spend. These customers represent a segment that could be targeted with incentives to encourage higher spending.</p>
+            <p><strong>Cluster 1 :</strong> These customers have the <b>lowest Balance, Purchases, and Payments.</b> With limited financial resources, they are cautious with their spending. This segment may benefit from budget-friendly products or financial assistance options to boost their purchasing potential.</p>
+            <p><strong>Cluster 2 :</strong> This cluster includes customers with the <b>highest Purchases and Payments.</b> They have a <b>good credit limit</b> and are active spenders, utilizing their financial capacity efficiently. These customers are the most profitable segment, and retaining their loyalty should be a priority through personalized offers and rewards.</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

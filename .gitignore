@@ -1,0 +1,17 @@
+# Node.js modules
+node_modules/
+
+# Environment variables
+.env
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Ignore specific data files
+data/Customer_Data.csv
+data/clustured_customer_data.csv
+data/customer_seg.ipynb
+
+# Ignore macOS system files
+.DS_Store
