@@ -1,27 +1,27 @@
 const express = require('express');
-const { PythonShell } = require('python-shell');
 const { spawn } = require('child_process');
-// i have encountered this cors error 
-const cors=require('cors');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
 
-
+// Middleware
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(cors({
-    origin: 'http://127.0.0.1:5500'  
-}));
+// this peice of code is used for single deployment thing 
+app.use(express.static(path.join(__dirname, 'frontend/public'))); // Serve static files from the frontend
+app.use(cors()); // Enable CORS for all origins
 app.use(bodyParser.json());
 
+// Routes
 app.get('/predict', (req, res) => {
-    res.end("<h1>reached</h1>")
-})
+    res.end("<h1>Prediction Endpoint Reached</h1>");
+});
+
+// this peice of code is used for single deployment thing
 app.get('/', (req, res) => {
-    res.end("<h1>HOME</h1>")
-})
+    res.sendFile(path.join(__dirname, 'frontend/public/index.html')); // Serve the main HTML file
+});
 
 app.post('/predict', (req, res) => {
     const features = req.body.features;
@@ -29,12 +29,10 @@ app.post('/predict', (req, res) => {
     if (!Array.isArray(features)) {
         return res.status(400).json({ error: 'Invalid input format. Expected an array of features.' });
     }
+
     const args = features.map(f => f.toString());
-    args.map((e)=>{
-        console.log(e);
-    })
-    const pythonPath = '/Users/priyanshugupta/anaconda3/bin/python';
-    const scriptPath = '/Users/priyanshugupta/Desktop/SEGMENTATION PROJECT/predict.py';
+    const pythonPath = 'python'; // Use 'python' to ensure it works in deployment
+    const scriptPath = path.join(__dirname, 'predict.py'); // Dynamic path
 
     const pythonProcess = spawn(pythonPath, [scriptPath, ...args]);
 
@@ -61,7 +59,6 @@ app.post('/predict', (req, res) => {
             }
 
             console.log('Raw result:', data);
-
             const prediction = JSON.parse(data);
             res.json(prediction);
         } catch (parseError) {
@@ -71,7 +68,7 @@ app.post('/predict', (req, res) => {
     });
 });
 
-
+// Start the server
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });
